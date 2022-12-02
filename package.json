@@ -11,7 +11,8 @@
   ],
   "activationEvents": [
     "onCommand:vscode-dotnet-manager.dotnetVersion",
-    "onCommand:vscode-dotnet-manager.dotnetNew"
+    "onCommand:vscode-dotnet-manager.dotnetNew",
+    "onCommand:vscode-dotnet-manager.dotnetNewSolution"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -23,6 +24,10 @@
       {
         "command": "vscode-dotnet-manager.dotnetNew",
         "title": ".NET CLI: New Project"
+      },
+      {
+        "command": "vscode-dotnet-manager.dotnetNewSolution",
+        "title": ".NET CLI: New Solution"
       }
     ]
   },

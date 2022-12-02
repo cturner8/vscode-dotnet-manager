@@ -27,4 +27,6 @@ export const dotnetNewCommand = async () => {
   vscode.window.showInformationMessage(
     `Created new project using "${template}" template.`
   );
+
+  // TODO: open new project file
 };

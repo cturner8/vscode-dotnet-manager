@@ -2,7 +2,11 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
-import { dotnetNewCommand, dotnetVersionCommand } from "./commands";
+import {
+  dotnetNewCommand,
+  dotnetNewSolutionCommand,
+  dotnetVersionCommand,
+} from "./commands";
 import { logger } from "./utils/logger";
 
 type CommandMap = {
@@ -32,6 +36,10 @@ export async function activate(context: vscode.ExtensionContext) {
       {
         command: "vscode-dotnet-manager.dotnetNew",
         handler: dotnetNewCommand,
+      },
+      {
+        command: "vscode-dotnet-manager.dotnetNewSolution",
+        handler: dotnetNewSolutionCommand,
       },
     ];
 
