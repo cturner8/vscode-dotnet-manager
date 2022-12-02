@@ -10,22 +10,23 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vscode-dotnet-manager.helloWorld"
+    "onCommand:vscode-dotnet-manager.dotnetVersion"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-dotnet-manager.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-dotnet-manager.dotnetVersion",
+        "title": ".NET CLI: Version"
       }
     ]
   },
   "scripts": {
-    "vscode:prepublish": "yarn run compile",
-    "compile": "tsc -p ./",
+    "vscode:prepublish": "yarn build",
+    "compile": "tsc -p ./ --noEmit",
+    "build": "tsc -p ./tsconfig.build.json",
     "watch": "tsc -watch -p ./",
-    "pretest": "yarn run compile && yarn run lint",
+    "pretest": "yarn compile && yarn lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },
