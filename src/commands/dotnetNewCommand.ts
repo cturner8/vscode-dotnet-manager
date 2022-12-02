@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { EXTENSION_DISPLAY_NAME } from "../resources/constants";
+import { getActiveTerminal } from "../utils/terminalUtils";
 
 export const dotnetNewCommand = async () => {
   let template = await vscode.window.showInputBox({
@@ -20,11 +20,8 @@ export const dotnetNewCommand = async () => {
     args.push(`--output ${directory.trim()}`);
   }
 
-  const terminal = vscode.window.createTerminal({
-    name: EXTENSION_DISPLAY_NAME,
-    // hideFromUser: true,
-    message: `Creating new project using ${template} template...`,
-  });
+  const terminal = getActiveTerminal();
+  terminal.sendText(`Creating new project using ${template} template...`);
   terminal.sendText(`dotnet new ${args.join(" ")}`);
 
   vscode.window.showInformationMessage(
