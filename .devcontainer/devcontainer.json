@@ -19,7 +19,8 @@
       "extensions": [
         "esbenp.prettier-vscode",
         "eamodio.gitlens",
-        "VisualStudioExptTeam.vscodeintellicode"
+        "VisualStudioExptTeam.vscodeintellicode",
+        "connor4312.esbuild-problem-matchers"
       ]
     }
   }

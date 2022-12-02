@@ -23,9 +23,10 @@
   },
   "scripts": {
     "vscode:prepublish": "yarn build",
-    "compile": "tsc -p ./ --noEmit",
-    "build": "tsc -p ./tsconfig.build.json",
-    "watch": "tsc -watch -p ./",
+    "compile": "tsc --noEmit",
+    "bundle": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outdir=out --format=cjs",
+    "build": "yarn bundle --tsconfig=tsconfig.build.json --minify",
+    "watch": "yarn bundle --watch --sourcemap",
     "pretest": "yarn compile && yarn lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
@@ -39,6 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "@vscode/test-electron": "^2.2.0",
+    "esbuild": "^0.15.16",
     "eslint": "^8.26.0",
     "glob": "^8.0.3",
     "mocha": "^10.1.0",
