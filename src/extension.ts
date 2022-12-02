@@ -5,6 +5,11 @@ import * as vscode from "vscode";
 import { dotnetNewCommand, dotnetVersionCommand } from "./commands";
 import { logger } from "./utils/logger";
 
+type CommandMap = {
+  command: string;
+  handler: () => void;
+};
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export async function activate(context: vscode.ExtensionContext) {
@@ -19,17 +24,20 @@ export async function activate(context: vscode.ExtensionContext) {
     // Now provide the implementation of the command with registerCommand
     // The commandId parameter must match the command field in package.json
 
-    const disposables = [
-      vscode.commands.registerCommand(
-        "vscode-dotnet-manager.dotnetVersion",
-        dotnetVersionCommand
-      ),
-      vscode.commands.registerCommand(
-        "vscode-dotnet-manager.dotnetNew",
-        dotnetNewCommand
-      ),
+    const commands: CommandMap[] = [
+      {
+        command: "vscode-dotnet-manager.dotnetVersion",
+        handler: dotnetVersionCommand,
+      },
+      {
+        command: "vscode-dotnet-manager.dotnetNew",
+        handler: dotnetNewCommand,
+      },
     ];
 
+    const disposables = commands.map(({ command, handler }) =>
+      vscode.commands.registerCommand(command, handler)
+    );
     context.subscriptions.push(...disposables);
   } catch (e) {
     const message = logger.error(e);
